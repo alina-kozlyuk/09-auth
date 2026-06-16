@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useState, startTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState, startTransition } from 'react';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   children: React.ReactNode;
@@ -19,9 +19,5 @@ export default function AuthLayout({ children }: Props) {
     });
   }, [router]);
 
-  if (loading) {
-    return null;
-  }
-
-  return <>{children}</>;
+  return <>{loading ? <div>Loading...</div> : children}</>;
 }

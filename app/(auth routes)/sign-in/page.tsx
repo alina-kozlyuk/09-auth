@@ -44,50 +44,42 @@ export default function SignInPage() {
   };
 
   return (
-    <main className={css.mainContent}>
-      <form className={css.form} onSubmit={handleSubmit}>
-        <h1 className={css.formTitle}>Sign in</h1>
+  <main className={css.mainContent}>
+    <h1 className={css.formTitle}>Sign in</h1>
 
-        <div className={css.formGroup}>
-          <label htmlFor="email">Email</label>
+    <form className={css.form} onSubmit={handleSubmit}>
+      <div className={css.formGroup}>
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          className={css.input}
+          required
+        />
+      </div>
 
-          <input
-            id="email"
-            type="email"
-            name="email"
-            className={css.input}
-            required
-          />
-        </div>
+      <div className={css.formGroup}>
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          autoComplete="current-password" 
+          className={css.input}
+          required
+        />
+      </div>
 
-        <div className={css.formGroup}>
-          <label htmlFor="password">Password</label>
+      <div className={css.actions}>
+        <button type="submit" className={css.submitButton}>
+          Log in
+        </button>
+      </div>
 
-          <input
-            id="password"
-            type="password"
-            name="password"
-            autoComplete="new-password"
-            className={css.input}
-            required
-          />
-        </div>
-
-        <div className={css.actions}>
-          <button
-            type="submit"
-            className={css.submitButton}
-          >
-            Log in
-          </button>
-        </div>
-
-        {error && (
-          <p className={css.error}>
-            {error}
-          </p>
-        )}
-      </form>
-    </main>
-  );
+      {}
+      <p className={css.error}>{error}</p>
+    </form>
+  </main>
+);
 }

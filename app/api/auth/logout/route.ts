@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { isAxiosError } from 'axios';
 import { api } from '../../api';
-import { logErrorResponse } from '@/app/_utils/utils';
+import { logErrorResponse } from '@/app/api/_utils/utils';
 
 export async function POST() {
   try {

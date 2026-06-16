@@ -7,6 +7,7 @@ import { register } from "@/lib/api/clientApi";
 import { useAuthStore } from "@/lib/store/authStore";
 
 import css from "./SignUpPage.module.css";
+import axios from "axios";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -38,10 +39,14 @@ export default function SignUpPage() {
       setUser(user);
 
       router.push("/profile");
-    } catch {
-      setError("Registration failed");
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message || "Something went wrong");
+      } else {
+        setError("An unexpected error occurred");
+      }
     }
-  };
+};
 
   return (
     <main className={css.mainContent}>
@@ -77,20 +82,12 @@ export default function SignUpPage() {
         </div>
 
         <div className={css.actions}>
-          <button
-            type="submit"
-            className={css.submitButton}
-          >
-            Register
-          </button>
-        </div>
-
-        {error && (
-          <p className={css.error}>
-            {error}
-          </p>
-        )}
-      </form>
-    </main>
-  );
+        <button type="submit" className={css.submitButton}>
+          Register
+        </button>
+      </div>
+      <p className={css.error}>{error}</p>
+    </form>
+  </main>
+);
 }

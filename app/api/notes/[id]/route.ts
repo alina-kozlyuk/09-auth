@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { isAxiosError } from 'axios';
-import { logErrorResponse } from '@/app/_utils/utils';
+import { logErrorResponse } from '@/app/api/_utils/utils';
 import { api } from '@/lib/api/api';
 
 type Props = {

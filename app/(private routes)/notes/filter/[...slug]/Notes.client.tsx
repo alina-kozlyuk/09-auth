@@ -21,12 +21,16 @@ export default function NotesClient({ tag }: NotesClientProps) {
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState('');
 
-    const { data, isLoading, isError } = useQuery({
-        queryKey: ['notes', page, search, tag],
-        queryFn: () => fetchNotes({ search, page, perPage: PER_PAGE, tag }),
-        placeholderData: keepPreviousData,
-        refetchOnMount: false,
-    });
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['notes', page, search, tag],
+    queryFn: () => fetchNotes({ search, page, perPage: PER_PAGE, tag }),
+    placeholderData: keepPreviousData,
+    refetchOnMount: false,
+    staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  });
 
     const notes = data?.notes ?? [];
     const totalPages = data?.totalPages ?? 0;
