@@ -5,9 +5,9 @@ import {
 } from '@tanstack/react-query';
 
 import NotesClient from './Notes.client';
-import { fetchNotes } from '@/lib/api';
 import type { NoteTag } from '@/types/note';
 import { Metadata } from "next"
+import { fetchNotes } from '@/lib/api/serverApi';
 
 export async function generateMetadata({ params }: NotesFilterPageProps): Promise<Metadata> {
   const { slug } = await params;

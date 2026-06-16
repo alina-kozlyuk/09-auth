@@ -3,10 +3,9 @@ import {
   QueryClient,
   dehydrate,
 } from '@tanstack/react-query';
-
-import { fetchNoteById } from '@/lib/api';
 import NoteDetailsClient from './NoteDetails.client';
 import { Metadata } from 'next';
+import { fetchNoteById } from '@/lib/api/serverApi';
 
 type NoteDetailsProps = {
   params: Promise<{
