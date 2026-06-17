@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import Image from "next/image"; 
 import { getMe } from "@/lib/api/serverApi";
 import css from './ProfilePage.module.css';
 
@@ -21,12 +22,13 @@ export default async function ProfilePage() {
           </Link>
         </div>
         <div className={css.avatarWrapper}>
-          <img
+          <Image
             src={user?.avatar || "/default-avatar.png"} 
             alt="User Avatar"
             width={120}
             height={120}
             className={css.avatar}
+            priority 
           />
         </div>
         <div className={css.profileInfo}>
