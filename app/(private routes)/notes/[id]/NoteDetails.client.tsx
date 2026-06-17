@@ -8,7 +8,7 @@ import { fetchNoteById } from '@/lib/api/clientApi';
 
 export default function NoteDetailsClient() {
   const params = useParams<{ id: string }>();
-  const id = params.id;
+  const id = params?.id; 
 
   const {
     data: note,
@@ -17,6 +17,11 @@ export default function NoteDetailsClient() {
   } = useQuery({
     queryKey: ['note', id],
     queryFn: () => fetchNoteById(id),
+    
+    
+    enabled: !!id,               
+    retry: false,                
+    refetchOnWindowFocus: false, 
     refetchOnMount: false,
   });
 
@@ -25,7 +30,11 @@ export default function NoteDetailsClient() {
   }
 
   if (error || !note) {
-    return <p>Something went wrong.</p>;
+    return (
+      <div className={css.container}>
+        <p>Something went wrong or note not found.</p>
+      </div>
+    );
   }
 
   return (
