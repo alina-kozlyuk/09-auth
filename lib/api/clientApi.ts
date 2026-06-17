@@ -30,6 +30,10 @@ interface UpdateUserData {
   username: string;
 }
 
+interface CheckSessionResponse {
+  success: boolean;
+}
+
 export const fetchNotes = async ({
   search,
   page,
@@ -94,17 +98,16 @@ export const logout = async (): Promise<void> => {
   await api.post("/auth/logout");
 };
 
-export const checkSession = async (): Promise<User | null> => {
+export const checkSession = async (): Promise<boolean> => {
   try {
-    const response = await api.get<User>("/auth/session");
-
-    return response.data;
+    const res = await api.get<CheckSessionResponse>('/auth/session');
+    return res.data.success;
   } catch {
-    return null;
+    return false;
   }
 };
 
-export const getMe = async (): Promise<User> => {
+export const getMe = async (): Promise<User | null> => {
   const response = await api.get<User>("/users/me");
 
   return response.data;

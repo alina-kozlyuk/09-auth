@@ -16,6 +16,7 @@ interface FetchNotesResponse {
   totalPages: number;
 }
 
+
 const getCookieHeader = async () => {
   const cookieStore = await cookies();
 
