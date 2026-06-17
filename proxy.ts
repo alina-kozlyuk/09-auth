@@ -8,6 +8,10 @@ const publicRoutes = ['/sign-in', '/sign-up'];
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  
+  if (pathname.startsWith('/api')) {
+    return NextResponse.next();
+  }
   const cookieStore = await cookies();
   
   const accessToken = cookieStore.get('accessToken')?.value || cookieStore.get('session')?.value;
