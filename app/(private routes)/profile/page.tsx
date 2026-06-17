@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfilePage() {
-  // Оскільки це серверний компонент, getMe має виконати запит із передачею кук
   const user = await getMe();
 
   return (
